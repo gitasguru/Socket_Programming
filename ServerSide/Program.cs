@@ -23,18 +23,17 @@ namespace ServerSide
             {
                 
                 NetworkStream ns = new NetworkStream(clientsdoor);
-                StreamWriter sw = new StreamWriter(ns);StreamReader sr = new StreamReader(ns);
-                Console.WriteLine("server >> WELCOME CLIENT!!!");
+                StreamWriter sw = new StreamWriter(ns);
+		Console.WriteLine("server >> WELCOME CLIENT!!!");
                 sw.WriteLine("Welcome Client");
                 sw.Flush();
 
-               while (true)
+               while (true) //(!sr.EndofStream)
                 {
+		    StreamReader sr = new StreamReader(ns);
                     Console.WriteLine("Client " + sr.ReadLine());
-                    sw.Flush();
+                    
                 }
-
-                // Clean up
                 sw.Close();
                 sr.Close();
                 ns.Close();
